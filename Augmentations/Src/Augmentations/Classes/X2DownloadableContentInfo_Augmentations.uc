@@ -43,7 +43,7 @@ static private function UpdateResearch()
 	ResearchNames.AddItem('AugmentationArmsClaw');
 	ResearchNames.AddItem('AugmentationArmsGrapple');
 	ResearchNames.AddItem('AugmentationLegsJumpModuleMK1');
-	ResearchNames.AddItem('AugmentationLegsMuscles');
+	//ResearchNames.AddItem('AugmentationLegsMuscles');
 	ResearchNames.AddItem('AugmentationTorsoNanoCoatingMK1');
 	ResearchNames.AddItem('AugmentationHeadNeuralGunlink');
 	ResearchNames.AddItem('AugmentationLegsJumpModuleMK2');
@@ -54,11 +54,14 @@ static private function UpdateResearch()
 
 	foreach ResearchNames(ResearchName)
 	{
-		if ( !IsResearchInHistory(ResearchName) )
+		if (!IsResearchInHistory(ResearchName))
 		{
 			TechTemplate = X2TechTemplate(StratMgr.FindStrategyElementTemplate(ResearchName));
-			TechState = XComGameState_Tech(NewGameState.CreateNewStateObject(class'XComGameState_Tech', TechTemplate));
-			NewGameState.AddStateObject(TechState);
+			if (TechTemplate != none)
+			{
+				TechState = XComGameState_Tech(NewGameState.CreateNewStateObject(class'XComGameState_Tech', TechTemplate));
+				NewGameState.AddStateObject(TechState);
+			}
 		}
 	}
 	if (NewGameState.GetNumGameStateObjects() > 0)
@@ -101,7 +104,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 	TorsoName = HumanPawn.m_kAppearance.nmTorso;
 	bIsFemale = HumanPawn.m_kAppearance.iGender == eGender_Female;
 
-	`LOG("DLCAppendSockets: Torso= " $ TorsoName $ ", Female= " $ string(bIsFemale),, 'Augmentations');
+	//`LOG("DLCAppendSockets: Torso= " $ TorsoName $ ", Female= " $ string(bIsFemale),, 'Augmentations');
 
 	foreach default.SocketReplacements(SocketReplacement)
 	{
@@ -127,3 +130,39 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 
 	return ReturnString;
 }
+
+static function UpdateHumanPawnMeshMaterial(XComGameState_Unit UnitState, XComHumanPawn Pawn, MeshComponent MeshComp, name ParentMaterialName, MaterialInstanceConstant MIC)
+{
+	local XComLinearColorPalette Palette;
+	local LinearColor ParamColor;
+
+	//`LOG(GetFuncName() @ UnitState.GetFullName() @ MeshComp.ObjectArchetype @ ParentMaterialName @ String(MaterialInstanceConstant(MIC.Parent).Name)  @ MIC.Name,, 'Augmentations');
+
+	//if ((InStr(Locs(string(Pawn.m_kAppearance.nmHead)), 'invis') != INDEX_NONE) &&
+	//	(MaterialInstanceConstant(MIC.Parent).Name == 'Teeth' ||
+	//	MaterialInstanceConstant(MIC.Parent).Name == 'Eyes'))
+	//{
+	//	if (SkeletalMeshComponent(MeshComp) != none)
+	//	{
+	//		SkeletalMeshComponent(MeshComp).SetHidden(true);
+	//		return;
+	//	}
+	//}
+	//else
+	//{
+	//	if (SkeletalMeshComponent(MeshComp) != none)
+	//	{
+	//		SkeletalMeshComponent(MeshComp).SetHidden(false);
+	//	}
+	//}
+
+	if (String(MaterialInstanceConstant(MIC.Parent).Name) == "AugmentationsMaterial")
+	{
+		Palette = `CONTENT.GetColorPalette(ePalette_EyeColor);
+		ParamColor = Palette.Entries[Pawn.m_kAppearance.iEyeColor > -1 ? Pawn.m_kAppearance.iEyeColor : 0].Primary;
+		//MaterialInstanceConstant(MIC.Parent).SetVectorParameterValue('EmissiveColor', ParamColor);
+		MIC.SetVectorParameterValue('EmissiveColor', ParamColor);
+		`LOG(GetFuncName() @ "Setting EmissiveColor",, 'Augmentations');
+	}
+}
+

@@ -34,6 +34,8 @@ static function EventListenerReturn OnArmoryMainMenuUpdate(Object EventData, Obj
 	local UIArmory_MainMenu MainMenu;
 	local UIListItemString StatUIButton;
 	local XComGameState_Unit UnitState;
+	local UnitValue SeveredBodyPart;
+	local bool bNeedsAttention;
 
 	`LOG(GetFuncName(),, 'Augmentations');
 	
@@ -43,10 +45,13 @@ static function EventListenerReturn OnArmoryMainMenuUpdate(Object EventData, Obj
 
 	if (UnitState.IsSoldier() && UnitState.GetMyTemplateName() != 'SparkSoldier')
 	{
+		if (UnitState.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
+			bNeedsAttention = UnitState.IsGravelyInjured();
+
 		StatUIButton = MainMenu.Spawn(class'UIListItemString', List.ItemContainer).InitListItem(class'UIArmory_Augmentations'.default.m_strInventoryTitle);
 		StatUIButton.MCName = 'ArmoryMainMenu_AugmentationsUIButton';
 		StatUIButton.ButtonBG.OnClickedDelegate = OnAugmentations;
-		StatUIButton.NeedsAttention(UnitState.IsGravelyInjured());
+		StatUIButton.NeedsAttention(bNeedsAttention);
 
 		//if(NextOnSelectionChanged == none)
 		//{
@@ -54,6 +59,10 @@ static function EventListenerReturn OnArmoryMainMenuUpdate(Object EventData, Obj
 		//	List.OnSelectionChanged = OnSelectionChanged;
 		//}
 		List.MoveItemToBottom(FindDismissListItem(List));
+	}
+	else
+	{
+		List.RemoveChild(FindAugmentationListItem(List));
 	}
 	return ELR_NoInterrupt;
 }
@@ -85,6 +94,11 @@ simulated function OnAugmentations(UIButton kButton)
 simulated static function UIListItemString FindDismissListItem(UIList List)
 {
 	return UIListItemString(List.GetChildByName('ArmoryMainMenu_DismissButton', false));
+}
+
+simulated static function UIListItemString FindAugmentationListItem(UIList List)
+{
+	return UIListItemString(List.GetChildByName('UIArmory_Augmentations', false));
 }
 
 simulated function OnSelectionChanged(UIList ContainerList, int ItemIndex)

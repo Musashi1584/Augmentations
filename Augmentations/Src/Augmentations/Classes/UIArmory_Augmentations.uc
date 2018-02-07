@@ -6,7 +6,7 @@ simulated function UpdateEquippedList()
 	local XComGameState_Unit UpdatedUnit;
 	local int prevIndex;
 	local CHUIItemSlotEnumerator En;
-	
+	local UnitValue SeveredBodyPart;
 
 	prevIndex = EquippedList.SelectedIndex;
 	UpdatedUnit = GetUnit();
@@ -34,10 +34,46 @@ simulated function UpdateEquippedList()
 			Item.InitLoadoutItem(En.ItemState, En.Slot, true, En.LockedReason);
 		else
 			Item.InitLoadoutItem(En.ItemState, En.Slot, true);
+
+		if (En.ItemState == none && UpdatedUnit.IsGravelyInjured())
+		{
+			if (UpdatedUnit.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
+			{
+				`LOG(GetFuncName() @ UpdatedUnit.GetFullName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', int(SeveredBodyPart.fValue)),,'Augmentations');
+				if (
+					(int(SeveredBodyPart.fValue) == eHead && En.Slot == eInvSlot_AugmentationHead) ||
+					(int(SeveredBodyPart.fValue) == eTorso && En.Slot == eInvSlot_AugmentationTorso) ||
+					(int(SeveredBodyPart.fValue) == eArms && En.Slot == eInvSlot_AugmentationArms) ||
+					(int(SeveredBodyPart.fValue) == eLegs && En.Slot == eInvSlot_AugmentationLegs)
+				)
+				{
+					Item.SetTitle(GetSeveredBodyPartTitle(int(SeveredBodyPart.fValue)));
+				}
+			}
+		}
 	}
 	EquippedList.SetSelectedIndex(prevIndex < EquippedList.ItemCount ? prevIndex : 0);
 	// Force item into view
 	EquippedList.NavigatorSelectionChanged(EquippedList.SelectedIndex);
+}
+
+static function String GetSeveredBodyPartTitle(int eBodyPart)
+{
+	switch (eBodyPart)
+	{
+		case eHead:
+			return class'X2AugmentationsGameRulesetDataStructures'.default.m_strServeredHead;
+			break;
+		case eTorso:
+			return class'X2AugmentationsGameRulesetDataStructures'.default.m_strServeredTorso;
+			break;
+		case eArms:
+			return class'X2AugmentationsGameRulesetDataStructures'.default.m_strServeredArms;
+			break;
+		case eLegs:
+			return class'X2AugmentationsGameRulesetDataStructures'.default.m_strServeredLegs;
+			break;
+	}
 }
 
 simulated function bool ShowInLockerList(XComGameState_Item Item, EInventorySlot SelectedSlot)
@@ -68,3 +104,4 @@ simulated function OnItemClicked(UIList ContainerList, int ItemIndex)
 	`LOG(GetFuncName(),, 'Augmentations');
 	UpdateData(true);
 }
+

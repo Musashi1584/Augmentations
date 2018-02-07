@@ -42,7 +42,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Items.AddItem(AugmentationArms_Grapple_MG());
 	Items.AddItem(AugmentationArms_Launcher_BM());
 
-	Items.AddItem(AugmentationTorso_BodyCompartment_MG());
+	//Items.AddItem(AugmentationTorso_BodyCompartment_MG());
 	Items.AddItem(AugmentationTorso_NanoCoating_MG());
 	Items.AddItem(AugmentationTorso_NanoCoating_BM());
 	
@@ -130,18 +130,28 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 		switch (X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot)
 		{
 			case eInvSlot_AugmentationHead:
+				UnitState.kAppearance.nmFacePropLower = '';
+				UnitState.kAppearance.nmFacePropUpper = '';
 				UnitState.kAppearance.nmHead = name(Head $ GenderSuffix);
 				UnitState.kAppearance.nmHelmet = name('Augmentations_Helmet' $ GenderSuffix);
 				break;
 			case eInvSlot_AugmentationTorso:
+				UnitState.kAppearance.nmTorsoDeco = '';
 				UnitState.kAppearance.nmTorso = name('Augmentations_Torso_KV' $ GenderSuffix);
 				break;
 			case eInvSlot_AugmentationArms:
 				UnitState.kAppearance.nmArms = '';
+				UnitState.kAppearance.nmLeftForearm = '';
+				UnitState.kAppearance.nmRightForearm = '';
+				UnitState.kAppearance.nmLeftArmDeco = '';
+				UnitState.kAppearance.nmRightArmDeco = '';
 				UnitState.kAppearance.nmLeftArm = name('Augmentations_ArmL_KV' $ GenderSuffix);
 				UnitState.kAppearance.nmRightArm = name('Augmentations_ArmR_KV' $ GenderSuffix);
 				break;
 			case eInvSlot_AugmentationLegs:
+				UnitState.kAppearance.nmLegs_Underlay = '';
+				UnitState.kAppearance.nmThighs = '';
+				UnitState.kAppearance.nmShins = '';
 				UnitState.kAppearance.nmLegs = name('Augmentations_Legs_KV' $ GenderSuffix);
 				break;
 		}
@@ -335,6 +345,8 @@ static function X2DataTemplate AugmentationArms_Grapple_MG()
 	Template.ItemCat = 'augmentation_arms';
 	Template.InventorySlot = eInvSlot_AugmentationArms;
 	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Arm";
+
+	Template.BaseDamage = default.CYBER_ARM_BASEDAMAGE;
 	
 	Template.BaseDamage = default.CYBER_ARM_BASEDAMAGE;
 	Template.Abilities.AddItem('AugmentedShield');
@@ -350,17 +362,19 @@ static function X2DataTemplate AugmentationArms_Grapple_MG()
 
 static function X2DataTemplate AugmentationArms_Launcher_BM()
 {
-	local X2ArmorTemplate Template;
+	local X2WeaponTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2ArmorTemplate', Template, 'AugmentationArms_Launcher_BM');
-	Template = X2ArmorTemplate(AugmentationBase(Template));
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'AugmentationArms_Launcher_BM');
+	Template = X2WeaponTemplate(AugmentationBase(Template));
 
 	Template.ItemCat = 'augmentation_arms';
 	Template.InventorySlot = eInvSlot_AugmentationArms;
 	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Arm";
+
+	Template.BaseDamage = default.CYBER_ARM_BASEDAMAGE;
 	
 	Template.Abilities.AddItem('AugmentedShield');
-	Template.bHeavyWeapon = true;
+	Template.Abilities.AddItem('CyberPunch');
 	
 	Template.TradingPostValue = 50;
 	Template.PointsToComplete = 0;
@@ -442,7 +456,7 @@ static function X2DataTemplate AugmentationLegs_JumpModule_MG()
 	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Leg";
 	
 	Template.Abilities.AddItem('AugmentedSpeed');
-	Template.Abilities.AddItem('CyberJumpMK1');
+	Template.Abilities.AddItem('CyberJumpMKOne');
 
 	Template.TradingPostValue = 35;
 	Template.Tier = 2;
@@ -462,7 +476,7 @@ static function X2DataTemplate AugmentationLegs_JumpModule_BM()
 	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Leg";
 	
 	Template.Abilities.AddItem('AugmentedSpeed');
-	Template.Abilities.AddItem('CyberJumpMK2');
+	Template.Abilities.AddItem('CyberJumpMKTwo');
 
 	Template.TradingPostValue = 50;
 	Template.Tier = 3;

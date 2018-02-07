@@ -52,8 +52,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(SyntheticMuscles());
 	Templates.AddItem(NeuralTacticalProcessor());
 	Templates.AddItem(NeuralGunLink());
-	Templates.AddItem(CyberJump('CyberJumpMK1', default.CYBER_LEGS_MOBILITY_BONUS_MK1, default.CYBER_LEGS_DODGE_BONUS_MK1));
-	Templates.AddItem(CyberJump('CyberJumpMK2', default.CYBER_LEGS_MOBILITY_BONUS_MK2, default.CYBER_LEGS_DODGE_BONUS_MK2));
+	Templates.AddItem(CyberJump('CyberJumpMKOne', default.CYBER_LEGS_MOBILITY_BONUS_MK1, default.CYBER_LEGS_DODGE_BONUS_MK1));
+	Templates.AddItem(CyberJump('CyberJumpMKTwo', default.CYBER_LEGS_MOBILITY_BONUS_MK2, default.CYBER_LEGS_DODGE_BONUS_MK2));
 	Templates.AddItem(SelfRepairingNanoCoating('NanoCoatingMK1', default.NANO_COATING_SHIELD_HP_MK1, default.NANO_COATING_SHIELD_REGEN_TURN_MK1, default.NANO_COATING_SHIELD_REGEN_MAX_MK1));
 	Templates.AddItem(SelfRepairingNanoCoating('NanoCoatingMK2', default.NANO_COATING_SHIELD_HP_MK2, default.NANO_COATING_SHIELD_REGEN_TURN_MK2, default.NANO_COATING_SHIELD_REGEN_MAX_MK2));
 	Templates.AddItem(WeakpointAnalyzer('WeakpointAnalyzerMK1', default.WEAKPOINTANALYZER_ARMOR_PIERCE_MK1, default.WEAKPOINTANALYZER_CRIT_CHANCE_MK1, default.WEAKPOINTANALYZER_CRIT_DAMAGE_MK1));
@@ -65,7 +65,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ExMachina());
 	Templates.AddItem(CyberPunch());
 	Templates.AddItem(CyberPunchAnimSet());
-	Templates.AddItem(AugmentationTorso());
+	Templates.AddItem(AugmentationTorsoBase());
 	Templates.AddItem(AugmentationBasePenalties());
 	Templates.AddItem(ClawsSlash());
 
@@ -161,32 +161,32 @@ static function X2AbilityTemplate CyberJump(name AbilityName, int MobilityBonus,
 	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
 	Template.AbilityTriggers.AddItem(Trigger);
 
-	JumpEffect = new class'X2Effect_PersistentTraversalChange';
-	JumpEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
-	//JumpEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false, , Template.AbilitySourceName);
-	JumpEffect.AddTraversalChange(eTraversal_JumpUp, true);
-	Template.AddTargetEffect(JumpEffect);
+	//PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	//PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	//PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+	//PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, MobilityBonus);
+	//PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, DodgeBonus);
+	//Template.AddTargetEffect(PersistentStatChangeEffect);
+	//
+	//JumpEffect = new class'X2Effect_PersistentTraversalChange';
+	//JumpEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	//JumpEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,,Template.AbilitySourceName);
+	//JumpEffect.AddTraversalChange(eTraversal_JumpUp, true);
+	//Template.AddTargetEffect(JumpEffect);
+	//
+	//AnimSets = new class'X2Effect_AdditionalAnimSets';
+	//AnimSets.AddAnimSetWithPath("CyberLegsAugmentations.Anims.AS_Jump");
+	//AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	//Template.AddTargetEffect(AnimSets);
 
-	AnimSets = new class'X2Effect_AdditionalAnimSets';
-	AnimSets.AddAnimSetWithPath("CyberLegsAugmentations.Anims.AS_Jump");
-	AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
-	Template.AddTargetEffect(AnimSets);
-
-	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, MobilityBonus);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, DodgeBonus);
-	Template.AddTargetEffect(PersistentStatChangeEffect);
-
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, MobilityBonus);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeStat, eStat_Dodge, DodgeBonus);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-
-	Template.bCrossClassEligible = false;
-	Template.bSkipFireAction = true;
+	//Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, MobilityBonus);
+	//Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeStat, eStat_Dodge, DodgeBonus);
+	//
+	//Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//
+	//Template.bCrossClassEligible = false;
+	//Template.bSkipFireAction = true;
 
 	return Template;
 }
@@ -457,7 +457,7 @@ static function X2AbilityTemplate CyberPunchAnimSet()
 	return Template;
 }
 
-static function X2AbilityTemplate AugmentationTorso()
+static function X2AbilityTemplate AugmentationTorsoBase()
 {
 	local X2AbilityTemplate Template;
 	local X2Effect_PersistentStatChange PersistentStatChangeEffect;

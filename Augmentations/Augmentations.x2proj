@@ -36,6 +36,9 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <Content Include="Config\XComGameData.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComVestSlot.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Content\AnimationsMaster_Augmentations.upk">
       <SubType>Content</SubType>
     </Content>

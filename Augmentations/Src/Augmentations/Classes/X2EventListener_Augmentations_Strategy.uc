@@ -4,9 +4,25 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
+	Templates.AddItem(CreateOverrideHasHeavyWeaponListenerTemplate());
 	Templates.AddItem(CreatePostMissionUpdateSoldierHealingListenerTemplate());
 
 	return Templates;
+}
+
+static function CHEventListenerTemplate CreateOverrideHasHeavyWeaponListenerTemplate()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'AugmentationsOnOverrideHasHeavyWeapon');
+
+	Template.RegisterInTactical = false;
+	Template.RegisterInStrategy = true;
+
+	Template.AddCHEvent('OverrideHasHeavyWeapon', OnOverrideHasHeavyWeapon, ELD_Immediate);
+	`LOG("Register Event OnOverrideHasHeavyWeapon",, 'RPG');
+
+	return Template;
 }
 
 static function CHEventListenerTemplate CreatePostMissionUpdateSoldierHealingListenerTemplate()
@@ -22,6 +38,46 @@ static function CHEventListenerTemplate CreatePostMissionUpdateSoldierHealingLis
 	`LOG("Register Event OnPostMissionUpdateSoldierHealing",, 'RPG');
 
 	return Template;
+}
+
+
+static function EventListenerReturn OnOverrideHasHeavyWeapon(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComLWTuple			OverrideTuple;
+	local XComGameState_Unit	UnitState;
+	local XComGameState			CheckGameState;
+	local bool bOverrideHasHeavyWeapon, bHasHeavyWeapon;
+	local XComGameState_Item	ItemState;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("OnOverrideHasHeavyWeapon event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	bOverrideHasHeavyWeapon = OverrideTuple.Data[0].b;
+	bHasHeavyWeapon = OverrideTuple.Data[1].b;
+	UnitState = XComGameState_Unit(EventSource);
+	CheckGameState = XComGameState(OverrideTuple.Data[2].o);
+
+	if (UnitState == none)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	ItemState = UnitState.GetItemInSlot(eInvSlot_AugmentationArms, CheckGameState);
+	if (ItemState != none)
+	{
+		bHasHeavyWeapon = ItemState.GetMyTemplateName() == 'AugmentationArms_Launcher_BM';
+		bOverrideHasHeavyWeapon = bHasHeavyWeapon;
+
+		OverrideTuple.Data[0].b = bOverrideHasHeavyWeapon;
+		OverrideTuple.Data[1].b = bHasHeavyWeapon;
+
+		`LOG(GetFuncName() @ bOverrideHasHeavyWeapon @ bHasHeavyWeapon,, 'Augmentations');
+	}
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)

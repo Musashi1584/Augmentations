@@ -12,17 +12,17 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorso', 'AugmentationTorso_Base_CV', 1, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArms', 'AugmentationArms_Base_CV', 1, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegs', 'AugmentationLegs_Base_CV', 1, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
-
+	
 	// MG
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArmsClaw', 'AugmentationArms_Claws_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArmsGrapple', 'AugmentationArms_Grapple_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsJumpModuleMK1', 'AugmentationLegs_JumpModule_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
 	//Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsMuscles', 'AugmentationLegs_Muscles_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoNanoCoatingMK1', 'AugmentationTorso_NanoCoating_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
-	Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoBodyCompartment', 'AugmentationTorso_BodyCompartment_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
+	//Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoBodyCompartment', 'AugmentationTorso_BodyCompartment_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationHeadNeuralGunlink', 'AugmentationHead_NeuralGunlink_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_HEAD"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationHeadWeakpointAnalyzerMK1', 'AugmentationHead_WeakpointAnalyzer_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_HEAD"));
-
+	
 	// BM
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsJumpModuleMK2', 'AugmentationLegs_JumpModule_BM', 3, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsSilentRunners', 'AugmentationLegs_SilentRunners_BM', 3, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
@@ -47,6 +47,7 @@ static function X2DataTemplate CreateAugmentationTemplate()
 	Template.SortingTier = 1;
 	Template.strImage = "img:///UILibrary_Augmentations.TECH_Augmentations";
 	Template.bArmorTech = true;
+	Template.bProvingGround = false;
 
 	// Requirements
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');

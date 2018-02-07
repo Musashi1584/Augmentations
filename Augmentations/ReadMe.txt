@@ -1,49 +1,37 @@
-﻿You created an XCOM 2 Mod Project!
+﻿[h1]You have not asked for this[/h1]
 
-Cyberlegs: Blunt amputation and replacement of the leg. Run faster, jump farther, move better. Unsurprisingly the augmentation is obvious and might make the subject stand out in a given social environment.
+This mods allows your soldiers to be augmented with several cybernetic augmentations.
 
-Synthetic Leg Muscles: Vatgrown myomer fibers grafted into the subject's legs allow for greater overall strength without much impact on an agent's ability to infiltrate into advent dominated society.
+There is a new research called "Cybernetic" which can be researched after Hybrid Materials.
 
-Walker Servos: Extremely specialized servomotors placed at critical points in locomotor anatomy allow the subject greater speed and tactical capability.
+Once researched you can build diverse Cybernetic parts in the proving ground.
 
-Elite Walker Servos: The absolute penultimate advancement in servomotor technology providing a given subject with serious tactical advantages in the field. 
+Higher tier parts also require higher armor research like plated armor or power armor.
 
-Elite Silent Runners: A complex interweave of biological and mechanical advancements worked into a subjects locomotor structures allowing complete silence during movement. With training they should be impossible to locate until it is too late.
+As soon as you have build a part you can augment a soldier by clicking on the new "Augmentations" menu item in the soldier menu.
 
-Cyberarms: Full replacement of a given manipulator limb. All joints and digits are upgraded with the intent of improving fine motor control and application of force.
+When augmenting a body part it gets replaced by the new cosmetics this mod provided (this behavior can be disabled in the ini).
 
-Cybergrapple: A blunt term for a complex series of artificial muscles and control systems designed to grant the user serious advantages in close quarters combat.
+The cosmetic are fully tintable and pattern can be applied. The color of emissive parts like eyes can be changed via the eye color menu.
 
-Cyberclaws: The given weaponry varies in design but the end result is the same, portable, easy to use sharp implements that can be deployed and used for violence at short notice.
+Its save to add this mod mid campaign
 
-Elite Cyberclaws: Advanced alloys, sharpening techniques, modular construction and specialized training regimen give the subject not just an easy to conceal melee weapon but the means to use it effectively.
+[h1]New wound mechanic[/h1]
 
-Wrist Launcher: Serious augmentation of the subject's arm creates a mount for weaponry usually rated for vehicles or combat drones. Particular attention has been paid to the shoulder to minimize thoracic damage from recoil.
+Augmenting soldiers reduce their healing time when they are wounded.
 
-Elite Wrist Launcher: Further augmentation of the user's manipulation limb as well as their nervous system allowing the user to more effectively wield weaponry usually considered well outside the range of man portable equipment.
+However when your soldier gets gravely wounded he gets assigned a body part randomly 
+which needs to be augmented in order to heal again at all.
+E.g his legs are critically wounded beyond repair and need to be replaced.
 
-Cybertorso: Complete Thoracic modification, organs moved and modified where required. Storage compartments added, armor plating applied. Should be easy to conceal with a decent shirt barring serious modification or original design.
+[h1]Why the vest slot dependency?[/h1]
 
-Distortion Field: A man portable defensive field that provides allies with some small defense against enemy action. Of little use against direct explosives but it can aid against shrapnel and indirect fire.
+Cybernetic torsos provide a free vest slot to your soldiers. Normal soldiers do *not* get a free vest slot with this mod active.
 
-Elite Distortion Field: A More advanced model capable of providing greater protection against enemy fire. A combination of predictive simulations, communication networking, and energy fields allow field agents to avoid enemy action with greater dependability. 
-
-Self Repairing Nano-Coating: A complex system of internal self repair systems that can, in theory, bring a given subject back from the edge of death.
-
-Self Repairing Nano-Coating MK2: Improvements on delivery system and on the fly improvisation from the AI in control of the repair system grant the subject greater resilience in the field.
-
-Cyberskull: Complete or as close to possible replacement of the skull. Serious improvement in the subject's ability to withstand head trauma. Eyes are usually replaced with superior prosthetics.
-
-Neural Gunlink: Implantation of artificial neural cluster programmed with ballistic calculations allowing the user to account for factors like weapon weight, windspeed, gravity and so on. Updates can be delivered via injection.
-
-Neural Tactical Processor:  Implantation of artificial nervous system tissues that account for various battlefield factors. Commonly called the 'triggernometry' implant by field agents it uses not just its user's data but squad networking for greater effectiveness.
-
-Extra-Reactive Pupils: A reductive name as this system also includes several grams of biomechanical material that allow the user to re-assess a given situation and make better targeting decisions.
-
-Hyper-Reactive Pupils: Modifications to the nerves in the arms and thoracic region along with updated wetware allow the user greater capabilities in accounting for unforeseen factors when it comes to making a followup shot.
-
-Weakpoint Analyzer: A significant portion of the user's frontal lobe is modified and given artificial neurons that allow them to detect and act on perceived weaknesses. 
-
-Elite Weakpoint Analyzer: Improvements to the initial system include regular updates to known weaknesses uploaded by field agents who survive engagements, as well as data from autopsies and system analysis by a dedicated team.
-
-Full Conversion Therapy: The subject completely abandons their biological origins in favor of a custom crafted body. Known side effects are a weakness to certain psionic disciplines but strongwilled subjects should have nothing to fear and the resulting product is usually unstoppable short direct artillery fire.
+[h1]Credits[/h1]
+Musashi - Gameplay design and coding
+Robojumper - Custom Slot support in the Highlander (without this mod would not exist)
+ObelixDK - Rigging and Weight painting
+Nekoworkshop - Textures
+ShinyDiver - Localization
+InternetExploder - Tech Images

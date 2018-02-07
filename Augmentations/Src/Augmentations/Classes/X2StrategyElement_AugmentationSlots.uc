@@ -1,6 +1,8 @@
-class X2StrategyElement_AugmentationSlots extends CHItemSlotSet;
+class X2StrategyElement_AugmentationSlots extends CHItemSlotSet config (Augmentations);
 
 var localized string strAugmentationFirstLetter;
+
+var config array<name> CharacterTemplateBlacklist;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -55,6 +57,12 @@ static function bool CanAddItemToAugmentationSlot(CHItemSlot Slot, XComGameState
 	local int Index;
 
 	`log(GetFuncName() @ "called" @ Template.DataName @ Template.ItemCat,, 'Augmentations');
+
+	if (!Unit.IsSoldier() || default.CharacterTemplateBlacklist.Find(Unit.GetMyTemplateName()) != INDEX_NONE)
+	{
+		return false;
+	}
+
 	if (!Slot.UnitHasSlot(Unit, strDummy, CheckGameState) || Unit.GetItemInSlot(Slot.InvSlot, CheckGameState) != none)
 	{
 		return false;
@@ -71,8 +79,7 @@ static function bool CanAddItemToAugmentationSlot(CHItemSlot Slot, XComGameState
 static function bool HasAugmentationSlot(CHItemSlot Slot, XComGameState_Unit UnitState, out string LockedReason, optional XComGameState CheckGameState)
 {
 	//`log(GetFuncName() @ "called",, 'Augmentations');
-	// @TODO check if soldier is augmented
-	return UnitState.IsSoldier() && !UnitState.IsRobotic();
+	return UnitState.IsSoldier() && default.CharacterTemplateBlacklist.Find(UnitState.GetMyTemplateName()) == INDEX_NONE;
 }
 
 static function int AugmentationGetPriority(CHItemSlot Slot, XComGameState_Unit UnitState, optional XComGameState CheckGameState)
