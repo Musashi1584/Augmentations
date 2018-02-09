@@ -55,8 +55,38 @@ static function bool CanAddItemToAugmentationSlot(CHItemSlot Slot, XComGameState
 {
 	local string strDummy;
 	local int Index;
+	local LWTuple Tuple;
+	local bool bOverrideCanAddItemToAugmentationSlot, bCanAddItemToAugmentationSlot;
 
 	`log(GetFuncName() @ "called" @ Template.DataName @ Template.ItemCat,, 'Augmentations');
+
+	Tuple = new class'LWTuple';
+	Tuple.Id = 'OverrideCanAddItemToAugmentationSlot';
+	Tuple.Data.Add(7);
+	Tuple.Data[0].kind = LWTVBool;
+	Tuple.Data[0].b = bOverrideCanAddItemToAugmentationSlot;
+	Tuple.Data[1].kind = LWTVBool;
+	Tuple.Data[1].b = bCanAddItemToAugmentationSlot;
+	Tuple.Data[2].kind = LWTVObject;
+	Tuple.Data[2].o = Slot;
+	Tuple.Data[3].kind = LWTVObject;
+	Tuple.Data[3].o = Template;
+	Tuple.Data[4].kind = LWTVObject;
+	Tuple.Data[4].o = CheckGameState;
+	Tuple.Data[5].kind = LWTVObject;
+	Tuple.Data[5].o = ItemState;
+	Tuple.Data[6].kind = LWTVInt;
+	Tuple.Data[6].i = Quantity;
+
+	`XEVENTMGR.TriggerEvent('OverrideCanAddItemToAugmentationSlot', Tuple, Unit);
+	
+	bOverrideCanAddItemToAugmentationSlot = Tuple.Data[0].b;
+	bCanAddItemToAugmentationSlot = Tuple.Data[1].b;
+
+	if (bOverrideCanAddItemToAugmentationSlot)
+	{
+		return bCanAddItemToAugmentationSlot;
+	}
 
 	if (!Unit.IsSoldier() || default.CharacterTemplateBlacklist.Find(Unit.GetMyTemplateName()) != INDEX_NONE)
 	{

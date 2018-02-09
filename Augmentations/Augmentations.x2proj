@@ -102,7 +102,7 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <Content Include="Src\Augmentations\Classes\X2Effect_Speed.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\Augmentations\Classes\X2EventListener_Augmentations_MainMenu.uc">
+    <Content Include="Src\Augmentations\Classes\X2EventListener_MainMenu_Augmentations.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\Augmentations\Classes\X2EventListener_Augmentations_Strategy.uc">

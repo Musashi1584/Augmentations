@@ -101,7 +101,7 @@ static function X2DataTemplate CreateProvingGroundTemplate(name TemplateName, na
 			break;
 		case 3:
 			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, 16);
-			Template.Requirements.RequiredTechs.AddItem('PowerArmor');
+			Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
 
 			// Cost
 			Resources.ItemTemplateName = 'Supplies';

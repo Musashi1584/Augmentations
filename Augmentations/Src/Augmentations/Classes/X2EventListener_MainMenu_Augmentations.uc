@@ -1,4 +1,4 @@
-class X2EventListener_Augmentations_MainMenu extends X2EventListener;
+class X2EventListener_MainMenu_Augmentations extends X2EventListener;
 
 var delegate<OnItemSelectedCallback> NextOnSelectionChanged;
 delegate OnItemSelectedCallback(UIList _list, int itemIndex);
@@ -22,7 +22,7 @@ static function CHEventListenerTemplate CreateMainMenuListenerTemplate()
 	Template.RegisterInStrategy = true;
 
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', OnArmoryMainMenuUpdate, ELD_Immediate);
-	`LOG("Register Event OnArmoryMainMenuUpdate",, 'RPG');
+	`LOG("Register Event OnArmoryMainMenuUpdate",, 'Augmentations');
 
 	return Template;
 }

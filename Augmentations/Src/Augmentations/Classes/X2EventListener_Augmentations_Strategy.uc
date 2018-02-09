@@ -1,4 +1,6 @@
-class X2EventListener_Augmentations_Strategy extends X2EventListener;
+class X2EventListener_Augmentations_Strategy extends X2EventListener config (Augmentations);
+
+var config bool bUseGravelyWoundedMechanic;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -95,10 +97,16 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 
 	UnitState = XComGameState_Unit(EventSource);
 
+	if (class'X2StrategyElement_AugmentationSlots'.default.CharacterTemplateBlacklist.Find(UnitState.GetMyTemplateName()) != INDEX_NONE ||
+		!default.bUseGravelyWoundedMechanic)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	// Prevent gravely units from healing and randomly determine a severed body part that needs to be augmented
 	if (UnitState != none && UnitState.IsGravelyInjured())
 	{
-		Random = Rand(3);
+		Random = Rand(4);
 
 		if ((Random == eHead && UnitState.GetItemInSlot(eInvSlot_AugmentationHead) == none) ||
 			(Random == eTorso && UnitState.GetItemInSlot(eInvSlot_AugmentationTorso) == none) ||
@@ -109,7 +117,6 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 			`LOG(GetFuncName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', Random),,'Augmentations');
 			UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 			UnitState.SetUnitFloatValue('SeveredBodyPart', float(Random), eCleanup_Never);
-			
 		}
 	}
 

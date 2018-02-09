@@ -161,32 +161,32 @@ static function X2AbilityTemplate CyberJump(name AbilityName, int MobilityBonus,
 	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
 	Template.AbilityTriggers.AddItem(Trigger);
 
-	//PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	//PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
-	//PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
-	//PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, MobilityBonus);
-	//PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, DodgeBonus);
-	//Template.AddTargetEffect(PersistentStatChangeEffect);
-	//
-	//JumpEffect = new class'X2Effect_PersistentTraversalChange';
-	//JumpEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
-	//JumpEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,,Template.AbilitySourceName);
-	//JumpEffect.AddTraversalChange(eTraversal_JumpUp, true);
-	//Template.AddTargetEffect(JumpEffect);
-	//
-	//AnimSets = new class'X2Effect_AdditionalAnimSets';
-	//AnimSets.AddAnimSetWithPath("CyberLegsAugmentations.Anims.AS_Jump");
-	//AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
-	//Template.AddTargetEffect(AnimSets);
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,,Template.AbilitySourceName);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, MobilityBonus);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, DodgeBonus);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+	
+	JumpEffect = new class'X2Effect_PersistentTraversalChange';
+	JumpEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	JumpEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,,Template.AbilitySourceName);
+	JumpEffect.AddTraversalChange(eTraversal_JumpUp, true);
+	Template.AddTargetEffect(JumpEffect);
+	
+	AnimSets = new class'X2Effect_AdditionalAnimSets';
+	AnimSets.AddAnimSetWithPath("CyberLegsAugmentations.Anims.AS_Jump");
+	AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	Template.AddTargetEffect(AnimSets);
 
-	//Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, MobilityBonus);
-	//Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeStat, eStat_Dodge, DodgeBonus);
-	//
-	//Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	//
-	//Template.bCrossClassEligible = false;
-	//Template.bSkipFireAction = true;
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, MobilityBonus);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeStat, eStat_Dodge, DodgeBonus);
+	
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	
+	Template.bCrossClassEligible = false;
+	Template.bSkipFireAction = true;
 
 	return Template;
 }
@@ -289,7 +289,7 @@ static function X2AbilityTemplate AugmentedSpeed()
 	local X2AbilityTemplate							Template;
 	local X2Effect_Augmentations_GrantActionPoints	GrantActionPointEffect;
 	local X2AbilityCost_ActionPoints				ActionPointCost;
-	local X2Effect_Speed							SpeedEffect;
+	//local X2Effect_Speed							SpeedEffect;
 	local X2AbilityCooldown							Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AugmentedSpeed');
@@ -324,10 +324,10 @@ static function X2AbilityTemplate AugmentedSpeed()
 	GrantActionPointEffect.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.MoveActionPoint);
 	Template.AddTargetEffect(GrantActionPointEffect);
 
-	SpeedEffect = new class'X2Effect_Speed';
-	SpeedEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	SpeedEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, , , Template.AbilitySourceName);
-	Template.AddTargetEffect(SpeedEffect);
+	//SpeedEffect = new class'X2Effect_Speed';
+	//SpeedEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	//SpeedEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, , , Template.AbilitySourceName);
+	//Template.AddTargetEffect(SpeedEffect);
 
  	Template.bShowActivation = true;
 	Template.bSkipFireAction = true;
