@@ -103,6 +103,8 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 		return ELR_NoInterrupt;
 	}
 
+	OverrideTuple.Data[0].b = true;
+
 	// Prevent gravely units from healing and randomly determine a severed body part that needs to be augmented
 	if (UnitState != none && UnitState.IsGravelyInjured())
 	{
@@ -113,7 +115,7 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 			(Random == eArms && UnitState.GetItemInSlot(eInvSlot_AugmentationArms) == none) ||
 			(Random == eLegs && UnitState.GetItemInSlot(eInvSlot_AugmentationLegs) == none))
 		{
-			OverrideTuple.Data[0].b = false;
+			OverrideTuple.Data[0].b = false; // disable the healing project
 			`LOG(GetFuncName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', Random),,'Augmentations');
 			UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 			UnitState.SetUnitFloatValue('SeveredBodyPart', float(Random), eCleanup_Never);

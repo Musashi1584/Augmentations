@@ -5,7 +5,19 @@ struct SlotConfigMap
 	var EInventorySlot InvSlot;
 	var name Category;
 };
+
+struct CosmeticConfig
+{
+	var name CharacterTemplate;
+	var EInventorySlot InvSlot;
+	var name Arm;
+	var name CosmeticTemplate;
+	var bool bStripAccessories;
+	var bool bFemale;
+};
+
 var config bool bAddCosmeticOnAugmentation;
+var config array<CosmeticConfig> bAutoCosmeticConfig;
 
 var config array<EInventorySlot> AugmentationSlots;
 var config array<SlotConfigMap> SlotConfig;
@@ -86,6 +98,8 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 	local XComGameState_HeadquartersXCom XComHQ;
 	local string GenderSuffix;
 	local string Head;
+	local CosmeticConfig AutoConfig;
+	local bool bFemale;
 
 	if (!UnitState.IsSoldier())
 		return;
@@ -110,6 +124,7 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 	if (default.bAddCosmeticOnAugmentation)
 	{
 		GenderSuffix = UnitState.kAppearance.iGender == eGender_Female ? "_F" : "";
+		bFemale = UnitState.kAppearance.iGender == eGender_Female;
 		
 		switch (UnitState.kAppearance.iRace)
 		{
@@ -127,33 +142,65 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 				break;
 		}
 
-		switch (X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot)
+		foreach default.bAutoCosmeticConfig(AutoConfig)
 		{
-			case eInvSlot_AugmentationHead:
-				UnitState.kAppearance.nmFacePropLower = '';
-				UnitState.kAppearance.nmFacePropUpper = '';
-				UnitState.kAppearance.nmHead = name(Head $ GenderSuffix);
-				UnitState.kAppearance.nmHelmet = name('Augmentations_Helmet' $ GenderSuffix);
-				break;
-			case eInvSlot_AugmentationTorso:
-				UnitState.kAppearance.nmTorsoDeco = '';
-				UnitState.kAppearance.nmTorso = name('Augmentations_Torso_KV' $ GenderSuffix);
-				break;
-			case eInvSlot_AugmentationArms:
-				UnitState.kAppearance.nmArms = '';
-				UnitState.kAppearance.nmLeftForearm = '';
-				UnitState.kAppearance.nmRightForearm = '';
-				UnitState.kAppearance.nmLeftArmDeco = '';
-				UnitState.kAppearance.nmRightArmDeco = '';
-				UnitState.kAppearance.nmLeftArm = name('Augmentations_ArmL_KV' $ GenderSuffix);
-				UnitState.kAppearance.nmRightArm = name('Augmentations_ArmR_KV' $ GenderSuffix);
-				break;
-			case eInvSlot_AugmentationLegs:
-				UnitState.kAppearance.nmLegs_Underlay = '';
-				UnitState.kAppearance.nmThighs = '';
-				UnitState.kAppearance.nmShins = '';
-				UnitState.kAppearance.nmLegs = name('Augmentations_Legs_KV' $ GenderSuffix);
-				break;
+			if (AutoConfig.CharacterTemplate == UnitState.GetMyTemplateName() &&
+				AutoConfig.InvSlot == X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot &&
+				AutoConfig.bFemale == bFemale)
+			{
+				`LOG("Setting" @ AutoConfig.CosmeticTemplate @ "for" @ AutoConfig.CharacterTemplate @ AutoConfig.InvSlot,, 'Augmentations');
+				switch (X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot)
+				{
+					case eInvSlot_AugmentationHead:
+						if (AutoConfig.bStripAccessories)
+						{
+							UnitState.kAppearance.nmFacePropLower = '';
+							UnitState.kAppearance.nmFacePropUpper = '';
+						}
+						UnitState.kAppearance.nmHead = name(Head $ GenderSuffix);
+						UnitState.kAppearance.nmHelmet = AutoConfig.CosmeticTemplate;
+						break;
+					case eInvSlot_AugmentationTorso:
+						if (AutoConfig.bStripAccessories)
+						{
+							UnitState.kAppearance.nmTorsoDeco = '';
+						}
+						UnitState.kAppearance.nmTorso = AutoConfig.CosmeticTemplate;
+						break;
+					case eInvSlot_AugmentationArms:
+						if (AutoConfig.bStripAccessories)
+						{
+							UnitState.kAppearance.nmLeftForearm = '';
+							UnitState.kAppearance.nmRightForearm = '';
+							UnitState.kAppearance.nmLeftArmDeco = '';
+							UnitState.kAppearance.nmRightArmDeco = '';
+							UnitState.kAppearance.nmArms = '';
+						}
+						if (AutoConfig.Arm == 'L')
+						{
+							UnitState.kAppearance.nmLeftArm = AutoConfig.CosmeticTemplate;
+						}
+						else if (AutoConfig.Arm == 'R')
+						{
+							UnitState.kAppearance.nmRightArm = AutoConfig.CosmeticTemplate;
+						}
+						else
+						{
+							UnitState.kAppearance.nmArms = AutoConfig.CosmeticTemplate;
+						}
+						
+						break;
+					case eInvSlot_AugmentationLegs:
+						if (AutoConfig.bStripAccessories)
+						{
+							UnitState.kAppearance.nmLegs_Underlay = '';
+							UnitState.kAppearance.nmThighs = '';
+							UnitState.kAppearance.nmShins = '';
+						}
+						UnitState.kAppearance.nmLegs = AutoConfig.CosmeticTemplate;
+						break;
+				}
+			}
 		}
 	}
 }
