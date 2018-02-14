@@ -49,7 +49,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(PurePassive('AugmentationHeavyWeapon', "img:///Texture2D'UILibrary_PerkIcons.UIPerk_heavy_rockets'"));
 
-	Templates.AddItem(SyntheticMuscles());
+	Templates.AddItem(SyntheticLegMuscles());
+	Templates.AddItem(SyntheticArmMuscles());
 	Templates.AddItem(NeuralTacticalProcessor());
 	Templates.AddItem(NeuralGunLink());
 	Templates.AddItem(CyberJump('CyberJumpMKOne', default.CYBER_LEGS_MOBILITY_BONUS_MK1, default.CYBER_LEGS_DODGE_BONUS_MK1));
@@ -72,6 +73,28 @@ static function array<X2DataTemplate> CreateTemplates()
 	return Templates;
 }
 
+static function X2AbilityTemplate SyntheticLegMuscles()
+{
+	local X2AbilityTemplate Template;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SyntheticLegMuscles');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bShowActivation = true;
+
+	return Template;
+}
+
 static function X2AbilityTemplate WeakpointAnalyzer(name AbilityName, int ArmorPierce, int CritChance, int CritDamage)
 {
 	local X2AbilityTemplate Template;
@@ -89,7 +112,7 @@ static function X2AbilityTemplate WeakpointAnalyzer(name AbilityName, int ArmorP
 }
 
 
-static function X2AbilityTemplate SyntheticMuscles()
+static function X2AbilityTemplate SyntheticArmMuscles()
 {
 	local X2AbilityTemplate Template;
 	local XMBEffect_ConditionalBonus BonusEffect;

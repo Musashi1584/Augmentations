@@ -1,6 +1,7 @@
 class X2EventListener_Augmentations_Strategy extends X2EventListener config (Augmentations);
 
 var config bool bUseGravelyWoundedMechanic;
+var config int GRAVELY_WOUNDED_NEEDS_AUGMENATION_CHANCE;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -87,6 +88,7 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 	local XComLWTuple			OverrideTuple;
 	local XComGameState_Unit	UnitState;
 	local int Random;
+	local int RandRoll;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
@@ -94,6 +96,8 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 		`REDSCREEN("OnPostMissionUpdateSoldierHealing event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
+
+	OverrideTuple.Data[0].b = true;
 
 	UnitState = XComGameState_Unit(EventSource);
 
@@ -103,22 +107,25 @@ static function EventListenerReturn OnPostMissionUpdateSoldierHealing(Object Eve
 		return ELR_NoInterrupt;
 	}
 
-	OverrideTuple.Data[0].b = true;
-
 	// Prevent gravely units from healing and randomly determine a severed body part that needs to be augmented
 	if (UnitState != none && UnitState.IsGravelyInjured())
 	{
-		Random = Rand(4);
+		RandRoll = `SYNC_RAND_STATIC(100);
 
-		if ((Random == eHead && UnitState.GetItemInSlot(eInvSlot_AugmentationHead) == none) ||
-			(Random == eTorso && UnitState.GetItemInSlot(eInvSlot_AugmentationTorso) == none) ||
-			(Random == eArms && UnitState.GetItemInSlot(eInvSlot_AugmentationArms) == none) ||
-			(Random == eLegs && UnitState.GetItemInSlot(eInvSlot_AugmentationLegs) == none))
+		if (RandRoll <= default.GRAVELY_WOUNDED_NEEDS_AUGMENATION_CHANCE)
 		{
-			OverrideTuple.Data[0].b = false; // disable the healing project
-			`LOG(GetFuncName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', Random),,'Augmentations');
-			UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-			UnitState.SetUnitFloatValue('SeveredBodyPart', float(Random), eCleanup_Never);
+			Random = Rand(4);
+
+			if ((Random == eHead && UnitState.GetItemInSlot(eInvSlot_AugmentationHead) == none) ||
+				(Random == eTorso && UnitState.GetItemInSlot(eInvSlot_AugmentationTorso) == none) ||
+				(Random == eArms && UnitState.GetItemInSlot(eInvSlot_AugmentationArms) == none) ||
+				(Random == eLegs && UnitState.GetItemInSlot(eInvSlot_AugmentationLegs) == none))
+			{
+				OverrideTuple.Data[0].b = false; // disable the healing project
+				`LOG(GetFuncName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', Random),,'Augmentations');
+				UnitState = XComGameState_Unit(GameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+				UnitState.SetUnitFloatValue('SeveredBodyPart', float(Random), eCleanup_Never);
+			}
 		}
 	}
 

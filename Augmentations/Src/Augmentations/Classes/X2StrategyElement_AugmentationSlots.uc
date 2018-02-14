@@ -60,6 +60,9 @@ static function bool CanAddItemToAugmentationSlot(CHItemSlot Slot, XComGameState
 
 	`log(GetFuncName() @ "called" @ Template.DataName @ Template.ItemCat,, 'Augmentations');
 
+	bOverrideCanAddItemToAugmentationSlot = false;
+	bCanAddItemToAugmentationSlot = false;
+
 	Tuple = new class'LWTuple';
 	Tuple.Id = 'OverrideCanAddItemToAugmentationSlot';
 	Tuple.Data.Add(7);

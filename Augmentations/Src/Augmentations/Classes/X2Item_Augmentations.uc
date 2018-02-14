@@ -59,9 +59,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	Items.AddItem(AugmentationTorso_NanoCoating_BM());
 	
 	Items.AddItem(AugmentationLegs_JumpModule_MG());
-	//Items.AddItem(AugmentationLegs_Muscles_MG());
+
 	Items.AddItem(AugmentationLegs_SilentRunners_BM());
 	Items.AddItem(AugmentationLegs_JumpModule_BM());
+
+	if (class'X2DownloadableContentInfo_Augmentations'.static.IsModInstalled('X2DownloadableContentInfo_XCOM2RPGOverhaul'))
+	{
+		Items.AddItem(AugmentationLegs_Muscles_MG());
+	}
+	
 	
 	// reverse ability order so the signature abilities are on top in the tactical ui
 	foreach Items(Item)
@@ -104,7 +110,7 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 	if (!UnitState.IsSoldier())
 		return;
 
-	if (UnitState.IsGravelyInjured() && UnitState.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
+	if (UnitState.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
 	{
 		if ((int(SeveredBodyPart.fValue) == eHead && X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot == eInvSlot_AugmentationHead) ||
 			(int(SeveredBodyPart.fValue) == eTorso && X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot == eInvSlot_AugmentationTorso) ||
@@ -112,11 +118,14 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 			(int(SeveredBodyPart.fValue) == eLegs && X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot == eInvSlot_AugmentationLegs))
 		{
 			`LOG(GetFuncName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', SeveredBodyPart.fValue),,'Augmentations');
+			if (UnitState.IsInjured() && !UnitState.HasHealingProject())
+			{
+				XComHQ = GetAndAddXComHQ(NewGameState);
+				ProjectState = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
+				ProjectState.SetProjectFocus(UnitState.GetReference(), NewGameState);
+				XComHQ.Projects.AddItem(ProjectState.GetReference());
+			}
 			UnitState.ClearUnitValue('SeveredBodyPart');
-			XComHQ = GetAndAddXComHQ(NewGameState);
-			ProjectState = XComGameState_HeadquartersProjectHealSoldier(NewGameState.CreateNewStateObject(class'XComGameState_HeadquartersProjectHealSoldier'));
-			ProjectState.SetProjectFocus(UnitState.GetReference(), NewGameState);
-			XComHQ.Projects.AddItem(ProjectState.GetReference());
 		}
 	}
 	UnitState.ModifyCurrentStat(eStat_HP, UnitState.GetMaxStat(eStat_HP) / 3 * 2);
@@ -573,25 +582,25 @@ static function X2DataTemplate AugmentationHead_NeuralTacticalProcessor_BM()
 	return Template;
 }
 
-//static function X2DataTemplate AugmentationLegs_Muscles_MG()
-//{
-//	local X2EquipmentTemplate Template;
-//
-//	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'AugmentationLegs_Muscles_MG');
-//	Template = AugmentationBase(Template);
-//
-//	Template.ItemCat = 'augmentation_legs';
-//	Template.InventorySlot = eInvSlot_AugmentationLegs;
-//	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Leg";
-//	
-//	Template.Abilities.AddItem('AugmentedSpeed');
-//	Template.Abilities.AddItem('SyntheticMuscles');
-//
-//	Template.TradingPostValue = 35;
-//	Template.Tier = 2;
-//
-//	return Template;
-//}
+static function X2DataTemplate AugmentationLegs_Muscles_MG()
+{
+	local X2EquipmentTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'AugmentationLegs_Muscles_MG');
+	Template = AugmentationBase(Template);
+
+	Template.ItemCat = 'augmentation_legs';
+	Template.InventorySlot = eInvSlot_AugmentationLegs;
+	Template.strImage = "img:///UILibrary_Augmentations.Inv_Augmentation_Leg";
+	
+	Template.Abilities.AddItem('AugmentedSpeed');
+	Template.Abilities.AddItem('SyntheticLegMuscles');
+
+	Template.TradingPostValue = 35;
+	Template.Tier = 2;
+
+	return Template;
+}
 
 static function X2DataTemplate AugmentationLegs_SilentRunners_BM()
 {

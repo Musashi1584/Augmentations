@@ -17,7 +17,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArmsClaw', 'AugmentationArms_Claws_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArmsGrapple', 'AugmentationArms_Grapple_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsJumpModuleMK1', 'AugmentationLegs_JumpModule_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
-	//Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsMuscles', 'AugmentationLegs_Muscles_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoNanoCoatingMK1', 'AugmentationTorso_NanoCoating_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
 	//Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoBodyCompartment', 'AugmentationTorso_BodyCompartment_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationHeadNeuralGunlink', 'AugmentationHead_NeuralGunlink_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_HEAD"));
@@ -30,6 +29,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationArmsWristLauncher', 'AugmentationArms_Launcher_BM', 3, "img:///UILibrary_Augmentations.TECH_Augmentations_ARM"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationTorsoNanoCoatingMK2', 'AugmentationTorso_NanoCoating_BM', 3, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
 	Techs.AddItem(CreateProvingGroundTemplate('AugmentationHeadWeakpointAnalyzerMK2', 'AugmentationHead_WeakpointAnalyzer_BM', 3, "img:///UILibrary_Augmentations.TECH_Augmentations_TORSO"));
+
+	if (class'X2DownloadableContentInfo_Augmentations'.static.IsModInstalled('X2DownloadableContentInfo_XCOM2RPGOverhaul'))
+	{
+		Techs.AddItem(CreateProvingGroundTemplate('AugmentationLegsMuscles', 'AugmentationLegs_Muscles_MG', 2, "img:///UILibrary_Augmentations.TECH_Augmentations_LEG"));
+	}
 
 	return Techs;
 }

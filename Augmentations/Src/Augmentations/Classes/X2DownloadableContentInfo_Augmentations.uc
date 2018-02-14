@@ -166,3 +166,17 @@ static function UpdateHumanPawnMeshMaterial(XComGameState_Unit UnitState, XComHu
 	}
 }
 
+static function bool IsModInstalled(name X2DCIName)
+{
+	local X2DownloadableContentInfo Mod;
+	foreach `ONLINEEVENTMGR.m_cachedDLCInfos (Mod)
+	{
+		if (Mod.Class.Name == X2DCIName)
+		{
+			`Log("Mod installed:" @ Mod.Class);
+			return true;
+		}
+	}
+
+	return false;
+}

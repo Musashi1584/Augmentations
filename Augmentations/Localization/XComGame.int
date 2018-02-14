@@ -79,8 +79,8 @@ TacticalText="An self learning expert system for alien anatomy and armor project
 [AugmentationLegs_Muscles_MG X2EquipmentTemplate]
 FriendlyName="<font color='#0064e0'><b>Cybernetic Muscles</b></font>"
 FriendlyNamePlural="<font color='#0064e0'><b>Cybernetic Muscles</b></font>"
-BriefSummary=""
-TacticalText=""
+BriefSummary="Vatgrown myomer fibers grafted into the subject's legs allow for greater overall strength"
+TacticalText="Allows to carry more and heavier gear on missions. Reduces the heavy weapob mobility penalties by 15%."
 
 [AugmentationLegs_JumpModule_BM X2EquipmentTemplate]
 FriendlyName="<font color='#d142f4'><b>Jump Module MKII</b></font>"
@@ -213,7 +213,7 @@ LocFlyOverText="Heavy Weapon Modul"
 LocLongDescription="Unlocks the heavy weapon item slot."
 LocHelpText="Unlocks the heavy weapon item slot."
 
-[SyntheticMuscles X2AbilityTemplate]
+[SyntheticArmMuscles X2AbilityTemplate]
 LocFriendlyName="Cybernetic Muscles"
 LocFlyOverText="Cybernetic Muscles"
 LocLongDescription="Cybernetic Muscles add +2 melee damage."

@@ -45,8 +45,7 @@ static function EventListenerReturn OnArmoryMainMenuUpdate(Object EventData, Obj
 
 	if (UnitState.IsSoldier() && UnitState.GetMyTemplateName() != 'SparkSoldier')
 	{
-		if (UnitState.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
-			bNeedsAttention = UnitState.IsGravelyInjured();
+		bNeedsAttention = UnitState.GetUnitValue('SeveredBodyPart', SeveredBodyPart);
 
 		StatUIButton = MainMenu.Spawn(class'UIListItemString', List.ItemContainer).InitListItem(class'UIArmory_Augmentations'.default.m_strInventoryTitle);
 		StatUIButton.MCName = 'ArmoryMainMenu_AugmentationsUIButton';
@@ -109,7 +108,7 @@ simulated function OnSelectionChanged(UIList ContainerList, int ItemIndex)
 
 	if (ContainerList.GetItem(ItemIndex).MCName == 'ArmoryMainMenu_AugmentationsUIButton') 
 	{
-		MainMenu.MC.ChildSetString("descriptionText", "htmlText", class'UIUtilities_Text'.static.AddFontInfo("DESCRIPTION TODO", true));
+		MainMenu.MC.ChildSetString("descriptionText", "htmlText", class'UIUtilities_Text'.static.AddFontInfo("Enhance your soldier with cybernetic augmentations", true));
 		return;
 	}
 	NextOnSelectionChanged(ContainerList, ItemIndex);

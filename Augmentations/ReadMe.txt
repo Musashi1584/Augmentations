@@ -66,6 +66,10 @@ yes, set
 bUseGravelyWoundedMechanic = false
 [/code]
 
+[b]Can you do a LW2 or Vanilla version?[/b]
+No i can't. I don't have both modding tools installed because they take up heaps of hd space and its too much effort to maintain multiple versions of a mod.
+
+
 [h1]Credits[/h1]
 [url=http://steamcommunity.com/id/MusashiKensai]Musashi[/url] - Gameplay design and coding
 [url=http://steamcommunity.com/id/Robojumper]Robojumper[/url] - Custom Slot support in the Highlander (without this mod would not exist)

@@ -35,20 +35,17 @@ simulated function UpdateEquippedList()
 		else
 			Item.InitLoadoutItem(En.ItemState, En.Slot, true);
 
-		if (En.ItemState == none && UpdatedUnit.IsGravelyInjured())
+		if (En.ItemState == none && UpdatedUnit.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
 		{
-			if (UpdatedUnit.GetUnitValue('SeveredBodyPart', SeveredBodyPart))
+			`LOG(GetFuncName() @ UpdatedUnit.GetFullName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', int(SeveredBodyPart.fValue)),,'Augmentations');
+			if (
+				(int(SeveredBodyPart.fValue) == eHead && En.Slot == eInvSlot_AugmentationHead) ||
+				(int(SeveredBodyPart.fValue) == eTorso && En.Slot == eInvSlot_AugmentationTorso) ||
+				(int(SeveredBodyPart.fValue) == eArms && En.Slot == eInvSlot_AugmentationArms) ||
+				(int(SeveredBodyPart.fValue) == eLegs && En.Slot == eInvSlot_AugmentationLegs)
+			)
 			{
-				`LOG(GetFuncName() @ UpdatedUnit.GetFullName() @ "SeveredBodyPart" @ GetEnum(Enum'ESeveredBodyPart', int(SeveredBodyPart.fValue)),,'Augmentations');
-				if (
-					(int(SeveredBodyPart.fValue) == eHead && En.Slot == eInvSlot_AugmentationHead) ||
-					(int(SeveredBodyPart.fValue) == eTorso && En.Slot == eInvSlot_AugmentationTorso) ||
-					(int(SeveredBodyPart.fValue) == eArms && En.Slot == eInvSlot_AugmentationArms) ||
-					(int(SeveredBodyPart.fValue) == eLegs && En.Slot == eInvSlot_AugmentationLegs)
-				)
-				{
-					Item.SetTitle(GetSeveredBodyPartTitle(int(SeveredBodyPart.fValue)));
-				}
+				Item.SetTitle(GetSeveredBodyPartTitle(int(SeveredBodyPart.fValue)));
 			}
 		}
 	}
