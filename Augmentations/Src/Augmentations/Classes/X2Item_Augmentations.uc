@@ -12,12 +12,13 @@ struct CosmeticConfig
 	var EInventorySlot InvSlot;
 	var name Arm;
 	var name CosmeticTemplate;
+	var name ArmorTemplate;
 	var bool bStripAccessories;
 	var bool bFemale;
 };
 
 var config bool bAddCosmeticOnAugmentation;
-var config array<CosmeticConfig> bAutoCosmeticConfig;
+var config array<CosmeticConfig> AutoCosmeticConfig;
 
 var config array<EInventorySlot> AugmentationSlots;
 var config array<SlotConfigMap> SlotConfig;
@@ -106,6 +107,7 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 	local string Head;
 	local CosmeticConfig AutoConfig;
 	local bool bFemale;
+	local X2ArmorTemplate ArmorTemplate;
 
 	if (!UnitState.IsSoldier())
 		return;
@@ -151,12 +153,21 @@ static function OnAugmentationEquipped(XComGameState_Item ItemState, XComGameSta
 				break;
 		}
 
-		foreach default.bAutoCosmeticConfig(AutoConfig)
+		ArmorTemplate = X2ArmorTemplate(UnitState.GetItemInSlot(eInvSlot_Armor).GetMyTemplate());
+
+		foreach default.AutoCosmeticConfig(AutoConfig)
 		{
 			if (AutoConfig.CharacterTemplate == UnitState.GetMyTemplateName() &&
 				AutoConfig.InvSlot == X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot &&
 				AutoConfig.bFemale == bFemale)
 			{
+				if (ArmorTemplate.DataName != '' &&
+					AutoConfig.ArmorTemplate != '' &&
+					AutoConfig.ArmorTemplate != ArmorTemplate.DataName)
+				{
+					continue;
+				}
+
 				`LOG("Setting" @ AutoConfig.CosmeticTemplate @ "for" @ AutoConfig.CharacterTemplate @ AutoConfig.InvSlot,, 'Augmentations');
 				switch (X2EquipmentTemplate(ItemState.GetMyTemplate()).InventorySlot)
 				{

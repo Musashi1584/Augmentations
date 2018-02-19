@@ -92,6 +92,8 @@ static function X2AbilityTemplate SyntheticLegMuscles()
 	Template.bDisplayInUITacticalText = false;
 	Template.bShowActivation = true;
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }
 
@@ -446,6 +448,8 @@ static function X2AbilityTemplate CyberPunch()
 
 	Template.CinescriptCameraType = "Skirmisher_Melee";
 
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 5;
+
 	return Template;
 }
 
@@ -505,6 +509,8 @@ static function X2AbilityTemplate AugmentationTorsoBase()
 	Template.bDisplayInUITacticalText = false;
 	Template.bShowActivation = true;
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }
 
@@ -534,6 +540,8 @@ static function X2AbilityTemplate AugmentationBasePenalties()
 	Template.bDisplayInUITacticalText = false;
 	Template.bShowActivation = true;
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }
 
@@ -548,6 +556,8 @@ static function X2AbilityTemplate ClawsSlash()
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chryssalid_slash";
 
 	Template.bFrameEvenWhenUnitIsHidden = true;
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 3;
 	
 	//for (i = 0; i < Template.AbilityCosts.Length; ++i)
 	//{

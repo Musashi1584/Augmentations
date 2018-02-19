@@ -370,6 +370,18 @@ DisplayName="Cybernetic Skull"
 [Augmentations_Helmet_F X2BodyPartTemplate]
 DisplayName="Cybernetic Skull"
 
+[Augmentations_Helmet_LF X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Helmet_UF X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Helmet_LF_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Helmet_UF_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
 ;--------------------------------------------------
 ;--------------------- Reaper ---------------------
 ;--------------------------------------------------
@@ -377,6 +389,18 @@ DisplayName="Cybernetic Skull"
 DisplayName="Cybernetic Torso"
 
 [Augmentations_Torso_RP_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_P_RP X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_P_RP_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_RP X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_RP_F X2BodyPartTemplate]
 DisplayName="Cybernetic Torso"
 
 [Augmentations_Arms_RP X2BodyPartTemplate]
@@ -412,6 +436,18 @@ DisplayName="Cybernetic Torso"
 [Augmentations_Torso_TP_F X2BodyPartTemplate]
 DisplayName="Cybernetic Torso"
 
+[Augmentations_Torso_P_TP X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_P_TP_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_TP X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_TP_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
 [Augmentations_Arms_TP X2BodyPartTemplate]
 DisplayName="Cybernetic Arms"
 
@@ -443,6 +479,18 @@ DisplayName="Cybernetic Legs"
 DisplayName="Cybernetic Torso"
 
 [Augmentations_Torso_SK_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_P_SK X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_P_SK_F X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_SK X2BodyPartTemplate]
+DisplayName="Cybernetic Torso"
+
+[Augmentations_Torso_PW_SK_F X2BodyPartTemplate]
 DisplayName="Cybernetic Torso"
 
 [Augmentations_Arms_SK X2BodyPartTemplate]

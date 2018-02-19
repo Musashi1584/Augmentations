@@ -1,4 +1,16 @@
-class X2StrategyElement_AugmentationTechs extends X2StrategyElement;
+class X2StrategyElement_AugmentationTechs extends X2StrategyElement config (Augmentations);
+
+var config int TIER1_BUILD_TIME;
+var config int TIER2_BUILD_TIME;
+var config int TIER3_BUILD_TIME;
+
+var config int TIER1_SUPPLY_COST;
+var config int TIER2_SUPPLY_COST;
+var config int TIER3_SUPPLY_COST;
+
+var config int TIER1_CORE_COST;
+var config int TIER2_CORE_COST;
+var config int TIER3_CORE_COST;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -82,39 +94,60 @@ static function X2DataTemplate CreateProvingGroundTemplate(name TemplateName, na
 	switch (Tier)
 	{
 		case 1:
-			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, 10);
+			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, default.TIER1_BUILD_TIME);
 
 			// Cost
-			Resources.ItemTemplateName = 'Supplies';
-			Resources.Quantity = 50;
-			Template.Cost.ResourceCosts.AddItem(Resources);
+			if (default.TIER1_SUPPLY_COST > 0)
+			{
+				Resources.ItemTemplateName = 'Supplies';
+				Resources.Quantity = default.TIER1_SUPPLY_COST;
+				Template.Cost.ResourceCosts.AddItem(Resources);
+			}
+
+			if (default.TIER1_CORE_COST > 0)
+			{
+				Artifacts.ItemTemplateName = 'EleriumCore';
+				Artifacts.Quantity = default.TIER1_CORE_COST;
+				Template.Cost.ArtifactCosts.AddItem(Artifacts);
+			}
 			break;
 		case 2:
-			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, 13);
+			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, default.TIER2_BUILD_TIME);
 			Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 
 			// Cost
-			Resources.ItemTemplateName = 'Supplies';
-			Resources.Quantity = 75;
-			Template.Cost.ResourceCosts.AddItem(Resources);
+			if (default.TIER2_SUPPLY_COST > 0)
+			{
+				Resources.ItemTemplateName = 'Supplies';
+				Resources.Quantity = default.TIER2_SUPPLY_COST;
+				Template.Cost.ResourceCosts.AddItem(Resources);
+			}
 
-			Artifacts.ItemTemplateName = 'EleriumCore';
-			Artifacts.Quantity = 1;
-			Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
+			if (default.TIER2_CORE_COST > 0)
+			{
+				Artifacts.ItemTemplateName = 'EleriumCore';
+				Artifacts.Quantity = default.TIER2_CORE_COST;
+				Template.Cost.ArtifactCosts.AddItem(Artifacts);
+			}
 			break;
 		case 3:
-			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, 16);
+			Template.PointsToComplete = class'X2StrategyElement_DefaultTechs'.static.StafferXDays(1, default.TIER3_BUILD_TIME);
 			Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
 
 			// Cost
-			Resources.ItemTemplateName = 'Supplies';
-			Resources.Quantity = 100;
-			Template.Cost.ResourceCosts.AddItem(Resources);
+			if (default.TIER3_SUPPLY_COST > 0)
+			{
+				Resources.ItemTemplateName = 'Supplies';
+				Resources.Quantity = default.TIER3_SUPPLY_COST;
+				Template.Cost.ResourceCosts.AddItem(Resources);
+			}
 
-			Artifacts.ItemTemplateName = 'EleriumCore';
-			Artifacts.Quantity = 1;
-			Template.Cost.ArtifactCosts.AddItem(Artifacts);
+			if (default.TIER3_CORE_COST > 0)
+			{
+				Artifacts.ItemTemplateName = 'EleriumCore';
+				Artifacts.Quantity = default.TIER3_CORE_COST;
+				Template.Cost.ArtifactCosts.AddItem(Artifacts);
+			}
 			break;
 	}
 
