@@ -19,12 +19,12 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <Folder Include="Src\Augmentations\Classes\" />
     <Folder Include="Src\LW_Tuple" />
     <Folder Include="Src\LW_Tuple\Classes" />
-    <Folder Include="Src\XModBase_Lib_Augmentations" />
+    <Folder Include="Src\XModBase_Augmentations" />
     <Folder Include="Src\XModBase_Interfaces" />
     <Folder Include="Src\XModBase_Core_2_0_1" />
     <Folder Include="Src\XModBase_Core_2_0_1\Classes" />
     <Folder Include="Src\XModBase_Interfaces\Classes" />
-    <Folder Include="Src\XModBase_Lib_Augmentations\Classes" />
+    <Folder Include="Src\XModBase_Augmentations\Classes" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAugmentations.ini">
@@ -150,115 +150,115 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\Examples.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\Examples.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBAbility.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBAbility.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBAbilityTrigger_EventListener.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBAbilityTrigger_EventListener.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_AbilityCost.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_AbilityCost.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_AbilityHitResult.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_AbilityHitResult.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_AbilityName.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_AbilityName.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_AbilityProperty.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_AbilityProperty.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_Concealed.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_Concealed.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_CoverType.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_CoverType.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_Dead.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_Dead.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_HeightAdvantage.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_HeightAdvantage.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_MatchingWeapon.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_MatchingWeapon.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_ReactionFire.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_ReactionFire.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_SourceAbilities.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_SourceAbilities.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBCondition_WeaponName.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBCondition_WeaponName.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffectUtilities.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffectUtilities.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_AbilityCostRefund.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_AbilityCostRefund.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_AddAbility.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_AddAbility.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_AddAbilityCharges.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_AddAbilityCharges.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_AddItemCharges.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_AddItemCharges.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_AddUtilityItem.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_AddUtilityItem.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_BonusDamageByDamageType.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_BonusDamageByDamageType.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_BonusRadius.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_BonusRadius.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_ChangeHitResultForAttacker.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_ChangeHitResultForAttacker.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_ConditionalBonus.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_ConditionalBonus.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_ConditionalStatChange.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_ConditionalStatChange.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_DoNotConsumeAllPoints.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_DoNotConsumeAllPoints.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_Extended.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_Extended.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_GrantReserveActionPoint.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_GrantReserveActionPoint.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_PermanentStatChange.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_PermanentStatChange.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_RevealUnit.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_RevealUnit.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBEffect_ToHitModifierByRange.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBEffect_ToHitModifierByRange.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBTemplateUtilities.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBTemplateUtilities.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBValue.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBValue.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBValue_Distance.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBValue_Distance.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBValue_UnitValue.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBValue_UnitValue.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\XModBase_Lib_Augmentations\Classes\XMBValue_Visibility.uc">
+    <Content Include="Src\XModBase_Augmentations\Classes\XMBValue_Visibility.uc">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

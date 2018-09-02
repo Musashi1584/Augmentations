@@ -135,25 +135,36 @@ static function UpdateHumanPawnMeshMaterial(XComGameState_Unit UnitState, XComHu
 {
 	local XComLinearColorPalette Palette;
 	local LinearColor ParamColor;
+	local MaterialInstanceConstant InvisibleMaterial;
+	local int i;
 
-	//`LOG(GetFuncName() @ UnitState.GetFullName() @ MeshComp.ObjectArchetype @ ParentMaterialName @ String(MaterialInstanceConstant(MIC.Parent).Name)  @ MIC.Name,, 'Augmentations');
+	`LOG(GetFuncName() @ UnitState.GetFullName() @ ParentMaterialName @ String(MaterialInstanceConstant(MIC.Parent).Name)  @ MIC.Name,, 'Augmentations');
 
-	//if ((InStr(Locs(string(Pawn.m_kAppearance.nmHead)), 'invis') != INDEX_NONE) &&
-	//	(MaterialInstanceConstant(MIC.Parent).Name == 'Teeth' ||
-	//	MaterialInstanceConstant(MIC.Parent).Name == 'Eyes'))
+	//if (ParentMaterialName == 'M_Transparent_INST' || UnitState == none)
 	//{
+	//	return;
+	//}
+	//
+	//if (SkeletalMeshComponent(MeshComp) == Pawn.m_kHeadMeshComponent)
+	//{
+	//	InvisibleMaterial = MaterialInstanceConstant(`CONTENT.RequestGameArchetype("MaterialInstanceConstant'MusashiAndroids.Materials.M_Transparent_INST'"));
+	//	
 	//	if (SkeletalMeshComponent(MeshComp) != none)
 	//	{
-	//		SkeletalMeshComponent(MeshComp).SetHidden(true);
+	//		`LOG(GetFuncName() @ InvisibleMaterial,, 'Augmentations');
+	//		for (i = 0; i < SkeletalMeshComponent(MeshComp).Materials.Length; i++)
+	//		{
+	//			SkeletalMeshComponent(MeshComp).SetMaterial(i, InvisibleMaterial);
+	//		}
 	//		return;
 	//	}
 	//}
 	//else
 	//{
-	//	if (SkeletalMeshComponent(MeshComp) != none)
-	//	{
-	//		SkeletalMeshComponent(MeshComp).SetHidden(false);
-	//	}
+	//	//if (SkeletalMeshComponent(MeshComp) != none)
+	//	//{
+	//	//	SkeletalMeshComponent(MeshComp).SetHidden(false);
+	//	//}
 	//}
 
 	if (String(MaterialInstanceConstant(MIC.Parent).Name) == "AugmentationsMaterial")
