@@ -191,3 +191,38 @@ static function bool IsModInstalled(name X2DCIName)
 
 	return false;
 }
+
+exec function InjureSoldier(ESeveredBodyPart Part, string UnitName)
+{
+	local XComGameState NewGameState;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+	local int idx;
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Turn Solier Into Class Cheat");
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+	for (idx = 0; idx < XComHQ.Crew.Length; idx++)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
+				
+		if (UnitState != none && UnitState.GetFullName() ~= UnitName)
+		{
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+			UnitState.SetUnitFloatValue('SeveredBodyPart', float(Part), eCleanup_Never);
+			UnitState.SetCurrentStat(eStat_HP, 4.0);
+		}
+	}
+
+	if (NewGameState.GetNumGameStateObjects() > 0)
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+}
