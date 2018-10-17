@@ -48,6 +48,9 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <Content Include="Content\CyberLegsAugmentations.upk">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Content\MusashiAndroidHeads.upk">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Content\MusashiAndroids.upk">
       <SubType>Content</SubType>
     </Content>

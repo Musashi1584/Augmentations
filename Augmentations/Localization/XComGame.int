@@ -322,6 +322,54 @@ LongDescription=" L. Shen."
 ;--------------------------------------------------
 ;----------------- Cosmetic Parts -----------------
 ;--------------------------------------------------
+[Augmentations_Head_AFR X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_AFR_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_ASN X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_ASN_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_CAU X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_CAU_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_LAT X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_LAT_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmAFR X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmAFR_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmASN X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmASN_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmCAU X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmCAU_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmLAT X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
+[Augmentations_Head_SkirmLAT_F X2BodyPartTemplate]
+DisplayName="Cybernetic Skull"
+
 [MA_InvisHead_AFR X2BodyPartTemplate]
 DisplayName="Invisible"
 
