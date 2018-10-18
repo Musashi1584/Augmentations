@@ -9,6 +9,7 @@ Tags=YouHavent Asked For This, War Of The Chosen, Augmentations, Cybernetics, Gh
     <SteamPublishID>0</SteamPublishID>
     <AssemblyName>Augmentations</AssemblyName>
     <RootNamespace>Augmentations</RootNamespace>
+    <ProjectGuid>{7ceefa97-cac3-48ec-ada8-c42899585cba}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Config\" />
