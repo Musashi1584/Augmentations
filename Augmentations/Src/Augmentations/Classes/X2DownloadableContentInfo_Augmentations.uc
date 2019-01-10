@@ -138,7 +138,7 @@ static function UpdateHumanPawnMeshMaterial(XComGameState_Unit UnitState, XComHu
 	local MaterialInstanceConstant InvisibleMaterial;
 	local int i;
 
-	`LOG(GetFuncName() @ UnitState.GetFullName() @ ParentMaterialName @ String(MaterialInstanceConstant(MIC.Parent).Name)  @ MIC.Name,, 'Augmentations');
+	//`LOG(GetFuncName() @ UnitState.GetFullName() @ ParentMaterialName @ String(MaterialInstanceConstant(MIC.Parent).Name)  @ MIC.Name,, 'Augmentations');
 
 	//if (ParentMaterialName == 'M_Transparent_INST' || UnitState == none)
 	//{
@@ -167,13 +167,18 @@ static function UpdateHumanPawnMeshMaterial(XComGameState_Unit UnitState, XComHu
 	//	//}
 	//}
 
+	if (!UnitState.IsSoldier())
+	{
+		return;
+	}
+
 	if (String(MaterialInstanceConstant(MIC.Parent).Name) == "AugmentationsMaterial")
 	{
 		Palette = `CONTENT.GetColorPalette(ePalette_EyeColor);
 		ParamColor = Palette.Entries[Pawn.m_kAppearance.iEyeColor > -1 ? Pawn.m_kAppearance.iEyeColor : 0].Primary;
 		//MaterialInstanceConstant(MIC.Parent).SetVectorParameterValue('EmissiveColor', ParamColor);
 		MIC.SetVectorParameterValue('EmissiveColor', ParamColor);
-		`LOG(GetFuncName() @ "Setting EmissiveColor",, 'Augmentations');
+		//`LOG(GetFuncName() @ "Setting EmissiveColor",, 'Augmentations');
 	}
 }
 
