@@ -10,6 +10,26 @@ struct SocketReplacementInfo
 
 var config array<SocketReplacementInfo> SocketReplacements;
 
+var config array<string> RunBefore;
+var config array<string> RunAfter;
+
+function array<string> GetRunBeforeDLCIdentifiers()
+{
+	return default.RunBefore;
+}
+
+function array<string> GetRunAfterDLCIdentifiers()
+{
+	return default.RunAfter;
+}
+
+static event OnPostTemplatesCreated()
+{
+	`LOG(default.class @ GetFuncName(),, 'DLCSort');
+	ScriptTrace();
+}
+
+
 static event OnLoadedSavedGame()
 {
 	UpdateResearch();
@@ -96,7 +116,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 	local string DefaultString, ReturnString;
 	local XComHumanPawn HumanPawn;
 
-	`LOG("DLCAppendSockets" @ Pawn,, 'LegendaryGear');
+	//`LOG("DLCAppendSockets" @ Pawn,, 'Augmentation');
 
 	HumanPawn = XComHumanPawn(Pawn);
 	if (HumanPawn == none) { return ""; }
@@ -126,7 +146,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 		// did not find, so use default
 		ReturnString = DefaultString;
 	}
-	`LOG("Returning mesh string: " $ ReturnString,, 'LegendaryGear');
+	//`LOG("Returning mesh string: " $ ReturnString,, 'Augmentation');
 
 	return ReturnString;
 }
